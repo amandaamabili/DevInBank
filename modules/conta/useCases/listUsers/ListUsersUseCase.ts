@@ -9,6 +9,9 @@ class ListUsersUseCase{
     }
     execute(): User[]{
         const users = this.userRepository.list();
+        if(!users){
+            throw new Error("Esses dados do usuário não existem!")
+        }
         return users;
     }
 }
