@@ -14,7 +14,7 @@ class GetUserController{
   }
   
     async handle(request: Request, response: Response): Promise<Response>{
-    const  id:any = request.query.id;
+    const  id:any = request.params.id;
     console.log(id)
     
     //passar parametros por path param, query param, body.

@@ -1,8 +1,8 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "RentalX Documentation",
-        "description": "This is API Rent",
+        "title": "DevInBank Documentation",
+        "description": "This is API DevInHouse",
         "version": "1.0.0",
         "contact": {
             "email": "amandaamabili8@gmail.com"
@@ -10,11 +10,11 @@
     
     },
     "paths": {
-        "/categories": {
+        "/user": {
             "post": {
-                "tags": ["Category"],
-                "summary": "Create a new category",
-                "description": "Create a new category",
+                "tags": ["User"],
+                "summary": "Create a new user",
+                "description": "Create a new user",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -24,14 +24,18 @@
                                     "name": {
                                         "type": "string"
                                     },
-                                    "description": {
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "cpf":{
                                         "type": "string"
                                     }
                         
                                 },
                                 "example": {
-                                    "name":"category name example",
-                                    "description":"category description example"
+                                    "name":"user name ",
+                                    "email":" user email ",
+                                    "cpf":" user cpf"
                                 }
                             }
                         }
@@ -42,40 +46,124 @@
                         "description": "Created"
                     },
                     "500": {
-                        "description": "Category already exists"
+                        "description": "User already exists"
                     }
                 }
 
-            },
-            "get": {
-                "tags":["Category"],
-                "summary":"List all categories",
-                "description": "List all categories",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json":{
-                                "schema":{
-                                    "type": "array",
-                                    "items": {
-                                        "type": "object",
-                                        "properties":{
-                                            "name": {
-                                                "type": "string"
-                                            },
-                                            "description":{
-                                                "type": "string"
-                                            }
+            }
+        
+
+           
+    },
+    "/user/": {
+        "get": {
+            "tags":"User",
+            "summary":"List user",
+            "description": "List user",
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "cpf":{
+                                        "type": "string"
+                                    }
+                        
+                                },
+                                "example": {
+                                    "name":"user name ",
+                                    "email":" user email ",
+                                    "cpf":" user cpf"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        
+        },
+        "patch": {
+            "tags":"User",
+            "summary":"Update user",
+            "description": "Update user",
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "cpf":{
+                                        "type": "string"
+                                    }
+                        
+                                },
+                                "example": {
+                                    "name":"user name ",
+                                    "email":" user email ",
+                                    "cpf":" user cpf"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        
+        }
+    },
+    "/users": {
+        "get": {
+            "tags":["User"],
+            "summary":"List user",
+            "description": "List user",
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties":{
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "email": {
+                                            "type": "string"
+                                        },
+                                        "cpf":{
+                                            "type": "string"
                                         }
+                            
                                     }
                                 }
                             }
                         }
                     }
                 }
-            
             }
+        
         }
     }
-}
+   
+}}

@@ -14,7 +14,7 @@ userRoutes.post("/", (request, response) => {
     return createUserController.handle(request, response);
 })
 
-userRoutes.get("/", (request, response) => {
+userRoutes.get("/:id", (request, response) => {
     return getUserController.handle(request, response);
 })
 userRoutes.patch("/", (request, response) => {
