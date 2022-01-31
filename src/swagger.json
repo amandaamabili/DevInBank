@@ -1,20 +1,21 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "RentalX Documentation",
-        "description": "This is API Rent",
+        "title": "DevInBank Documentation",
+        "description": "This is API DevInHouse",
         "version": "1.0.0",
         "contact": {
             "email": "amandaamabili8@gmail.com"
         }
-    
     },
     "paths": {
-        "/categories": {
+        "/user": {
             "post": {
-                "tags": ["Category"],
-                "summary": "Create a new category",
-                "description": "Create a new category",
+                "tags": [
+                    "User"
+                ],
+                "summary": "Create a new user",
+                "description": "Create a new user",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -24,14 +25,17 @@
                                     "name": {
                                         "type": "string"
                                     },
-                                    "description": {
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "cpf": {
                                         "type": "string"
                                     }
-                        
                                 },
                                 "example": {
-                                    "name":"category name example",
-                                    "description":"category description example"
+                                    "name": "user name ",
+                                    "email": " user email ",
+                                    "cpf": " user cpf"
                                 }
                             }
                         }
@@ -42,29 +46,81 @@
                         "description": "Created"
                     },
                     "500": {
-                        "description": "Category already exists"
+                        "description": "User already exists"
                     }
                 }
-
             },
+            "patch": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Update user",
+                "description": "Update user",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "cpf": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "id": "0232115",
+                                    "name": "user name ",
+                                    "email": " user email ",
+                                    "cpf": " user cpf"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                        
+                    }
+                }
+            }
+        },
+        "/users": {
             "get": {
-                "tags":["Category"],
-                "summary":"List all categories",
-                "description": "List all categories",
+                "tags": [
+                    "User"
+                ],
+                "summary": "List user",
+                "description": "List users",
+                "parameters": [],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "content": {
-                            "application/json":{
-                                "schema":{
+                            "application/json": {
+                                "schema": {
                                     "type": "array",
                                     "items": {
                                         "type": "object",
-                                        "properties":{
+                                        "properties": {
+                                            "id": {
+                                                "type": "string"
+                                            },
                                             "name": {
                                                 "type": "string"
                                             },
-                                            "description":{
+                                            "email": {
+                                                "type": "string"
+                                            },
+                                            "cpf": {
                                                 "type": "string"
                                             }
                                         }
@@ -74,8 +130,123 @@
                         }
                     }
                 }
-            
+            }
+        },
+        "/user/{id}": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "List user",
+                "description": "List user",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/financial/import/:userId": {
+            "post": {
+                "tags": [
+                    "Financial"
+                ],
+                "summary": "Create a new financial",
+                "description": "Create a new financial",
+                "consumes": [
+                    "multipart/form-data"
+                  ],
+                  "parameters": [
+                    {
+                      "name": "userID",
+                      "in": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    {
+                      "name": "file",
+                      "in": "formData",
+                      "type": "file",
+                      "required": true,
+                      "description": "Anexe uma planilha CSV com os dados para importar"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "OK"
+                    },
+                    "404": {
+                      "description": "Not Found"
+                    }
+                  }
+            }
+        },
+        "/financial/:userId": {
+            "get": {
+                "tags": [
+                    "Financial"
+                ],
+                "summary": "Get financial",
+                "description": "Get financial data",
+                "parameters": [
+                    {
+                      "name": "userId",
+                      "in": "path",
+                      "required": true,
+                      "type": "string"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "OK"
+                    },
+                    "404": {
+                      "description": "Not Found"
+                    }
+                  }
+            }
+        },
+        "/financial/:userId/:financialId": {
+            "delete": {
+                "tags": [
+                    "Financial"
+                ],
+                "summary": "Delete data user and transaction",
+                "description": "Delete data user and transaction",
+                "parameters": [
+                    {
+                      "name": "userId",
+                      "in": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    {
+                      "name": "financialId",
+                      "in": "path",
+                      "required": true,
+                      "type": "string"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "OK"
+                    },
+                    "404": {
+                      "description": "Not Found"
+                    }
+                  }
+                }
             }
         }
     }
-}
