@@ -7,12 +7,13 @@
         "contact": {
             "email": "amandaamabili8@gmail.com"
         }
-    
     },
     "paths": {
         "/user": {
             "post": {
-                "tags": ["User"],
+                "tags": [
+                    "User"
+                ],
                 "summary": "Create a new user",
                 "description": "Create a new user",
                 "requestBody": {
@@ -27,15 +28,14 @@
                                     "email": {
                                         "type": "string"
                                     },
-                                    "cpf":{
+                                    "cpf": {
                                         "type": "string"
                                     }
-                        
                                 },
                                 "example": {
-                                    "name":"user name ",
-                                    "email":" user email ",
-                                    "cpf":" user cpf"
+                                    "name": "user name ",
+                                    "email": " user email ",
+                                    "cpf": " user cpf"
                                 }
                             }
                         }
@@ -49,253 +49,204 @@
                         "description": "User already exists"
                     }
                 }
-
-            }
-        
-
-           
-    },
-    "/users": {
-        "get": {
-            "tags":["User"],
-            "summary":"List user",
-            "description": "List users",
-            "responses": {
-                "200": {
-                    "description": "OK",
-                    "content": {
-                        "application/json":{
-                            "schema":{
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties":{
-                                        "id": {
-                                            "type": "string"
-                                        },
-                                        "name": {
-                                            "type": "string"
-                                        },
-                                        "email": {
-                                            "type": "string"
-                                        },
-                                        "cpf":{
-                                            "type": "string"
-                                        }
-                            
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        
-        }
-    },
-    "/user/:id": {
-        "get": {
-            "tags":["User"],
-            "summary":"List user",
-            "description": "List user",
-            "responses": {
-                "200": {
-                    "description": "OK",
-                    "content": {
-                        "application/json":{
-                            "schema":{
-                                "type": "object",
-                                "properties": {
-                                    "name": {
-                                        "type": "string"
-                                    },
-                                    "email": {
-                                        "type": "string"
-                                    },
-                                    "cpf":{
-                                        "type": "string"
-                                    }
-                        
-                                },
-                                "example": {
-                                    "name":"user name ",
-                                    "email":" user email ",
-                                    "cpf":" user cpf"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        
-        },
-        "patch": {
-            "tags":["User"],
-            "summary":"Update user",
-            "description": "Update user",
-            "responses": {
-                "200": {
-                    "description": "OK",
-                    "content": {
-                        "application/json":{
-                            "schema":{
-                                "type": "object",
-                                "properties": {
-                                    "id": {
-                                        "type":"string"
-                                    },
-                                    "name": {
-                                        "type": "string"
-                                    },
-                                    "email": {
-                                        "type": "string"
-                                    },
-                                    "cpf":{
-                                        "type": "string"
-                                    }
-                        
-                                },
-                                "example": {
-                                    "id":"0232115",
-                                    "name":"user name ",
-                                    "email":" user email ",
-                                    "cpf":" user cpf"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        
-        }
-    },
-    "/financial/import/:userId": {
-        "post": {
-            "tags": ["Financial"],
-            "summary": "Create a new financial",
-            "description": "Create a new financial",
-            "requestBody": {
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "File CSV",
-                            "properties": {
-                                "name": {
-                                    "type": "string"
-                                },
-                                "price": {
-                                    "type": "number"
-                                },
-                                "typesOfExpenses":{
-                                    "type": "string"
-                                },
-                                "date":{
-                                    "type": "Date"
-                                }
-                    
-                            },
-                            "example": {
-                                "name":"transaction name example",
-                                "price":"price transaction ",
-                                "typesOfExpenses":" 'credit' or 'debit'",
-                                "date": "Date"
-                            }
-                        }
-                    }
-                }
-            }
-           }
-},
-
-           "/financial/:userId": {
-            "get": {
-                "tags": ["Financial"],
-                "summary": "Get financial",
-                "description": "Get financial data",
+            },
+            "patch": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Update user",
+                "description": "Update user",
                 "requestBody": {
                     "content": {
                         "application/json": {
                             "schema": {
-                                "type": "Object",
+                                "type": "object",
                                 "properties": {
                                     "id": {
                                         "type": "string"
                                     },
-                                    "userId": {
-                                        "type": "number"
+                                    "name": {
+                                        "type": "string"
                                     },
-                                    "transactions":[
-                                        {
-                                            "name": "string",
-                                            "price": "number",
-                                            "typesOfExpenses":"string",
-                                            "date":"Date"
-                                        }
-                                    ]
-                                       
-                                        
-                                    
-                        
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "cpf": {
+                                        "type": "string"
+                                    }
                                 },
                                 "example": {
-                                    "id":"123",
-                                    "userId":"1234",
-                                    "transactions":[
-                                        {
-                                         "name":"string",
-                                         "price":"price transaction ",
-                                         "typesOfExpenses":" 'credit' or 'debit'",
-                                         "date":"Date"
+                                    "id": "0232115",
+                                    "name": "user name ",
+                                    "email": " user email ",
+                                    "cpf": " user cpf"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                        
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "List user",
+                "description": "List users",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "string"
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "email": {
+                                                "type": "string"
+                                            },
+                                            "cpf": {
+                                                "type": "string"
+                                            }
                                         }
-                                    ]
-                                    
+                                    }
                                 }
                             }
                         }
                     }
                 }
-        
-
-    }
-
-
-   
-},
-"/financial/:userId/:financialId": {
-    "delete": {
-        "tags": ["Financial"],
-        "summary": "Delete data user and transaction",
-        "description": "Delete data user and transaction",
-        "requestBody": {
-            "content": {
-                "application/json": {
-                    "schema": {
-                        "type": "Object",
-                        "properties": {
-                            "id": {
-                                "type": "string"
-                            },
-                            "userId": {
-                                "type": "string"
-                            }
-                            
-                
-                        },
-                        "example": {
-                            "id":"123",
-                            "userId":"1234"
-                            
-                        }
+            }
+        },
+        "/user/{id}": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "List user",
+                "description": "List user",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
                     }
                 }
             }
+        },
+        "/financial/import/:userId": {
+            "post": {
+                "tags": [
+                    "Financial"
+                ],
+                "summary": "Create a new financial",
+                "description": "Create a new financial",
+                "consumes": [
+                    "multipart/form-data"
+                  ],
+                  "parameters": [
+                    {
+                      "name": "userID",
+                      "in": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    {
+                      "name": "file",
+                      "in": "formData",
+                      "type": "file",
+                      "required": true,
+                      "description": "Anexe uma planilha CSV com os dados para importar"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "OK"
+                    },
+                    "404": {
+                      "description": "Not Found"
+                    }
+                  }
+            }
+        },
+        "/financial/:userId": {
+            "get": {
+                "tags": [
+                    "Financial"
+                ],
+                "summary": "Get financial",
+                "description": "Get financial data",
+                "parameters": [
+                    {
+                      "name": "userId",
+                      "in": "path",
+                      "required": true,
+                      "type": "string"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "OK"
+                    },
+                    "404": {
+                      "description": "Not Found"
+                    }
+                  }
+            }
+        },
+        "/financial/:userId/:financialId": {
+            "delete": {
+                "tags": [
+                    "Financial"
+                ],
+                "summary": "Delete data user and transaction",
+                "description": "Delete data user and transaction",
+                "parameters": [
+                    {
+                      "name": "userId",
+                      "in": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    {
+                      "name": "financialId",
+                      "in": "path",
+                      "required": true,
+                      "type": "string"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "OK"
+                    },
+                    "404": {
+                      "description": "Not Found"
+                    }
+                  }
+                }
+            }
         }
-
-
-}
-
-
-
-}
-   
-}}
+    }
