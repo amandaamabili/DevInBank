@@ -55,9 +55,47 @@
 
            
     },
-    "/user/": {
+    "/users": {
         "get": {
-            "tags":"User",
+            "tags":["User"],
+            "summary":"List user",
+            "description": "List users",
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties":{
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "email": {
+                                            "type": "string"
+                                        },
+                                        "cpf":{
+                                            "type": "string"
+                                        }
+                            
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        
+        }
+    },
+    "/user/:id": {
+        "get": {
+            "tags":["User"],
             "summary":"List user",
             "description": "List user",
             "responses": {
@@ -92,7 +130,7 @@
         
         },
         "patch": {
-            "tags":"User",
+            "tags":["User"],
             "summary":"Update user",
             "description": "Update user",
             "responses": {
@@ -103,6 +141,9 @@
                             "schema":{
                                 "type": "object",
                                 "properties": {
+                                    "id": {
+                                        "type":"string"
+                                    },
                                     "name": {
                                         "type": "string"
                                     },
@@ -115,6 +156,7 @@
                         
                                 },
                                 "example": {
+                                    "id":"0232115",
                                     "name":"user name ",
                                     "email":" user email ",
                                     "cpf":" user cpf"
@@ -127,43 +169,133 @@
         
         }
     },
-    "/users": {
-        "get": {
-            "tags":["User"],
-            "summary":"List user",
-            "description": "List user",
-            "responses": {
-                "200": {
-                    "description": "OK",
-                    "content": {
-                        "application/json":{
-                            "schema":{
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties":{
-                                        "id": {
-                                            "type": "string"
-                                        },
-                                        "name": {
-                                            "type": "string"
-                                        },
-                                        "email": {
-                                            "type": "string"
-                                        },
-                                        "cpf":{
-                                            "type": "string"
-                                        }
-                            
-                                    }
+    "/financial/import/:userId": {
+        "post": {
+            "tags": ["Financial"],
+            "summary": "Create a new financial",
+            "description": "Create a new financial",
+            "requestBody": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "File CSV",
+                            "properties": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "price": {
+                                    "type": "number"
+                                },
+                                "typesOfExpenses":{
+                                    "type": "string"
+                                },
+                                "date":{
+                                    "type": "Date"
                                 }
+                    
+                            },
+                            "example": {
+                                "name":"transaction name example",
+                                "price":"price transaction ",
+                                "typesOfExpenses":" 'credit' or 'debit'",
+                                "date": "Date"
                             }
                         }
                     }
                 }
             }
+           }
+},
+
+           "/financial/:userId": {
+            "get": {
+                "tags": ["Financial"],
+                "summary": "Get financial",
+                "description": "Get financial data",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "Object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "userId": {
+                                        "type": "number"
+                                    },
+                                    "transactions":[
+                                        {
+                                            "name": "string",
+                                            "price": "number",
+                                            "typesOfExpenses":"string",
+                                            "date":"Date"
+                                        }
+                                    ]
+                                       
+                                        
+                                    
+                        
+                                },
+                                "example": {
+                                    "id":"123",
+                                    "userId":"1234",
+                                    "transactions":[
+                                        {
+                                         "name":"string",
+                                         "price":"price transaction ",
+                                         "typesOfExpenses":" 'credit' or 'debit'",
+                                         "date":"Date"
+                                        }
+                                    ]
+                                    
+                                }
+                            }
+                        }
+                    }
+                }
         
-        }
+
     }
+
+
+   
+},
+"/financial/:userId/:financialId": {
+    "delete": {
+        "tags": ["Financial"],
+        "summary": "Delete data user and transaction",
+        "description": "Delete data user and transaction",
+        "requestBody": {
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "type": "Object",
+                        "properties": {
+                            "id": {
+                                "type": "string"
+                            },
+                            "userId": {
+                                "type": "string"
+                            }
+                            
+                
+                        },
+                        "example": {
+                            "id":"123",
+                            "userId":"1234"
+                            
+                        }
+                    }
+                }
+            }
+        }
+
+
+}
+
+
+
+}
    
 }}
